@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="dash-head">
+  <h2 class="dash-welcome">Welcome back, {{ user.name }} <span class="wave">👋</span></h2>
+</div>
+
+<div class="dash-layout">
+
+  <section class="dash-panel">
+    <div class="panel-top">
+      <div class="panel-title">
+        <div class="panel-label">To-Do</div>
+        <div class="panel-sub">Today</div>
+      </div>
+      <a class="panel-action" href="{{ url_for('new_todo') }}">＋ Add task</a>
+    </div>
+
+    {% if todos_pending and todos_pending|length > 0 %}
+      <div class="cards">
+        {% for t in todos_pending %}
+          <div class="task-card">
+            <div class="task-dot {{ t.priority|lower }}"></div>
+
+            <div class="task-main">
+              <div class="task-title-row">
+                <div class="task-title">{{ t.title }}</div>
+                <div class="task-menu">
+                  <a href="{{ url_for('edit_todo', todo_id=t.id) }}">Edit</a>
+                  <a class="danger"
+                     href="{{ url_for('delete_todo', todo_id=t.id) }}"
+                     onclick="return confirm('Delete this task?')">Delete</a>
+                </div>
+              </div>
+
+              <div class="task-desc">
+                Category: {{ t.category }} • Priority: {{ t.priority }}
+                {% if t.due_date %} • Due: {{ t.due_date }}{% endif %}
+              </div>
+
+              <div class="task-meta">
+                <span>Priority: <b>{{ t.priority }}</b></span>
+                <span>Status: <b>{{ "In Progress" if not t.completed else "Completed" }}</b></span>
+                <span>Created: <b>{{ t.created_at.strftime("%d/%m/%Y") }}</b></span>
+              </div>
+            </div>
+            
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty">No pending tasks yet.</p>
+    {% endif %}
+  </section>
+
+  <section class="dash-right">
+
+    <div class="dash-panel">
+      <div class="panel-top">
+        <div class="panel-title">
+          <div class="panel-label">Task Status</div>
+          <div class="panel-sub">Progress overview</div>
+        </div>
+      </div>
+
+      <div class="status-rings">
+        <div class="ring-box">
+          <div class="ring green" style="--p: {{ percent_completed }};">
+            <div class="ring-center">{{ percent_completed }}%</div>
+          </div>
+          <div class="ring-text"><span class="legend green"></span> Completed</div>
+        </div>
+
+        <div class="ring-box">
+          <div class="ring blue" style="--p: {{ percent_pending }};">
+            <div class="ring-center">{{ percent_pending }}%</div>
+          </div>
+          <div class="ring-text"><span class="legend blue"></span> In Progress</div>
+        </div>
+
+        <div class="ring-box">
+          <div class="ring red" style="--p: {{ percent_notstarted }};">
+            <div class="ring-center">{{ percent_notstarted }}%</div>
+          </div>
+          <div class="ring-text"><span class="legend red"></span> Not Started</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLETED PANEL -->
+    <div class="dash-panel">
+      <div class="panel-top">
+        <div class="panel-title">
+          <div class="panel-label">Completed Task</div>
+          <div class="panel-sub">Finished tasks</div>
+        </div>
+      </div>
+
+      {% if todos_done and todos_done|length > 0 %}
+        <div class="cards">
+          {% for t in todos_done %}
+            <div class="task-card compact done">
+              <div class="task-dot green"></div>
+
+              <div class="task-main">
+                <div class="task-title-row">
+                  <div class="task-title">{{ t.title }}</div>
+                  <div class="task-menu">
+                    <a href="{{ url_for('edit_todo', todo_id=t.id) }}">Edit</a>
+                  </div>
+                </div>
+
+                <div class="task-desc">
+                  Status: Completed • Category: {{ t.category }}
+                  {% if t.due_date %} • Due: {{ t.due_date }}{% endif %}
+                </div>
+
+                <div class="task-meta">
+                  <span>Completed ✅</span>
+                  <span>Created: <b>{{ t.created_at.strftime("%d/%m/%Y") }}</b></span>
+                </div>
+              </div>
+
+            
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty">No completed tasks yet.</p>
+      {% endif %}
+    </div>
+
+  </section>
+</div>
+
+{% endblock %}

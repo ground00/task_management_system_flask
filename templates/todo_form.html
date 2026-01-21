@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Todo{% endblock %}
+
+{% block content %}
+<div class="center-wrap">
+  <div class="auth-card">
+    <h2 class="auth-title">{% if todo %}Edit Task{% else %}New Task{% endif %}</h2>
+    <p class="auth-subtitle">Fill details and save.</p>
+
+    <form method="post" class="auth-form">
+      <input
+        name="title"
+        placeholder="Task title"
+        value="{{ todo.title if todo else '' }}"
+        required
+      >
+
+      <div class="row">
+        <select name="category">
+          {% set current = todo.category if todo else 'General' %}
+          {% for c in ["General","Work","Study","Personal","Health"] %}
+            <option value="{{ c }}" {% if current==c %}selected{% endif %}>{{ c }}</option>
+          {% endfor %}
+        </select>
+
+        <select name="priority">
+          {% set p = todo.priority if todo else 'Medium' %}
+          <option value="Low" {% if p=="Low" %}selected{% endif %}>Low</option>
+          <option value="Medium" {% if p=="Medium" %}selected{% endif %}>Medium</option>
+          <option value="High" {% if p=="High" %}selected{% endif %}>High</option>
+        </select>
+      </div>
+
+      <input
+        type="date"
+        name="due_date"
+        value="{{ todo.due_date if todo and todo.due_date else '' }}"
+      >
+
+      {% if todo %}
+        <label class="checkbox">
+          <input type="checkbox" name="completed" {% if todo.completed %}checked{% endif %}>
+          Completed
+        </label>
+      {% endif %}
+
+      <button class="btn primary" type="submit">Save</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

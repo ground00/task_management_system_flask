@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}My Tasks{% endblock %}
+
+{% block content %}
+<div class="section-head">
+  <h2 class="section-title">My Tasks</h2>
+  <a class="btn primary" href="{{ url_for('new_todo') }}">+ Add Task</a>
+</div>
+
+<div class="task-grid">
+  {% for todo in todos %}
+    <div class="task-card {% if todo.completed %}done{% endif %}">
+      <div class="task-top">
+        <div class="task-title">
+          {% if todo.completed %}✅{% else %}📝{% endif %}
+          {{ todo.title }}
+        </div>
+        <span class="pill {{ todo.priority|lower }}">{{ todo.priority }}</span>
+      </div>
+
+      <div class="task-meta">
+        <span class="pill soft">Category: {{ todo.category }}</span>
+        {% if todo.due_date %}
+          <span class="pill soft">Due: {{ todo.due_date }}</span>
+        {% else %}
+          <span class="pill soft">No due date</span>
+        {% endif %}
+      </div>
+
+      <div class="task-actions">
+        <a class="btn" href="{{ url_for('edit_todo', todo_id=todo.id) }}">Edit</a>
+        <a class="btn danger" href="{{ url_for('delete_todo', todo_id=todo.id) }}"
+           onclick="return confirm('Delete this task?')">Delete</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

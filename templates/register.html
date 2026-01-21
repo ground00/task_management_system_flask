@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="center-wrap">
+  <div class="auth-card">
+    <h2 class="auth-title">Register</h2>
+    <p class="auth-subtitle">Create your account in seconds.</p>
+
+    <form method="post" class="auth-form">
+      <input name="name" placeholder="Full Name" required>
+      <input name="email" placeholder="Email" type="email" required>
+      <input name="password" placeholder="Password" type="password" required>
+      <button class="btn primary" type="submit">Create Account</button>
+    </form>
+
+    <p class="auth-footer">
+      Already registered? <a href="{{ url_for('login') }}">Login</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

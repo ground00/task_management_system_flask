@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-head">
+    <div>
+      <div class="card-title red">Settings</div>
+      <div class="card-sub">Customize your account and dashboard</div>
+    </div>
+  </div>
+
+  <form method="post" class="form-grid">
+
+    <label class="field">
+      <span>Display Name</span>
+      <input type="text" name="name" value="{{ user.name }}" placeholder="Your name">
+    </label>
+
+    <label class="field">
+      <span>Theme</span>
+      <select name="theme">
+        <option value="midnight" {% if current_theme=="midnight" %}selected{% endif %}>Midnight (Navy/Violet)</option>
+        <option value="light" {% if current_theme=="light" %}selected{% endif %}>Light</option>
+      </select>
+    </label>
+
+    <label class="check">
+      <input type="checkbox" name="compact" {% if compact %}checked{% endif %}>
+      Compact task cards (less spacing)
+    </label>
+
+    <div class="form-actions">
+      <button class="btn primary" type="submit">Save Settings</button>
+    </div>
+
+    <p style="color: rgba(255,255,255,0.65); margin-top:6px;">
+      Tip: Theme + compact mode are stored in your browser session for simplicity.
+    </p>
+  </form>
+</div>
+{% endblock %}
