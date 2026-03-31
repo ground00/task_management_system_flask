@@ -17,22 +17,6 @@ This project allows users to create, manage, and track tasks with categories, pr
 
 ---
 
-## 📸 Screenshots
-
-### 🔑 Login Page
-![Login](screenshots/LoginPage.png)
-
-### 📊 Dashboard
-![Dashboard](screenshots/Homepage.png)
-
-### 📋 Task List
-![Tasks](screenshots/TaskPage.png)
-
-### ➕ Add Task
-![Add Task](screenshots/TaskCategories.png)
-
----
-
 ## 🛠️ Technologies Used
 
 - Python
