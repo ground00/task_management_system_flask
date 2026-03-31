@@ -1,61 +1,50 @@
-# task_management_system_flask
-A task management web application made using Flask and SQLite, demonstrating CRUD operations, user authentication, data persistence with GDPR-aware design principles. 
-Designed to help users organize tasks, track priorities and monitor productivity with the help of a clean dashboard interface. 
+# 🗂️ Task Management System (Flask)
 
-This project was developed as part of a Master's-level coursework and demonstrates backend development, database integration, and user-focused design principles.
+A simple and intuitive web-based task management application built using Flask.  
+This project allows users to create, manage, and track tasks with categories, priorities, and due dates.
 
 ---
 
 ## 🚀 Features
 
-- User registration and authentication
-- Create, view, update, and delete tasks (CRUD)
-- Task categorization and priority levels
-- Due date tracking
-- Dashboard with task status visualization
-- Search functionality
-- User settings
-- GDPR-aware design considerations
+- 🔐 User authentication (register & login)
+- ✅ Create, edit, and delete tasks
+- 🗂️ Organize tasks by category
+- ⚡ Set task priorities (Low, Medium, High)
+- 📅 Assign due dates
+- 🔍 Search tasks by title
+- 📊 Dashboard with task statistics
+
+---
+
+## 📸 Screenshots
+
+### 🔑 Login Page
+![Login](screenshots/LoginPage.png)
+
+### 📊 Dashboard
+![Dashboard](screenshots/Homepage.png)
+
+### 📋 Task List
+![Tasks](screenshots/TaskPage.png)
+
+### ➕ Add Task
+![Add Task](screenshots/TaskCategories.png)
 
 ---
 
 ## 🛠️ Technologies Used
 
-- **Python (Flask)**
-- **SQLite** (database)
-- **HTML5 / CSS3**
-- **Jinja2 Templates**
-- **Werkzeug Security** (password hashing)
+- Python
+- Flask
+- Flask-SQLAlchemy
+- Flask-Login
+- SQLite
+- HTML / CSS
 
 ---
 
-## 📂 Project Structure
-.
-├── app.py
-├── todo.db
-├── templates/
-│ ├── base.html
-│ ├── index.html
-│ ├── todos.html
-│ ├── todo_form.html
-│ ├── login.html
-│ ├── register.html
-│ ├── categories.html
-│ └── settings.html
-├── static/
-│ └── style.css
-└── README.md
-
-
----
-
-## ▶️ Running the Application
-
-🔷 How to Run]
-
-Replace your current instructions with:
-
-## 🛠️ How to Run Locally
+## ⚙️ How to Run Locally
 
 1. Clone the repository:
    ```bash
@@ -65,44 +54,24 @@ Replace your current instructions with:
 Create a virtual environment:
 
 python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
+Activate the environment:
+
+Mac/Linux:
+
+source venv/bin/activate
+
+Windows:
+
+venv\Scripts\activate
 
 Install dependencies:
 
 pip install flask flask_sqlalchemy flask_login
 
-Run the app:
+Run the application:
 
 python app.py
 
-Open in browser:
+Open your browser and go to:
 
 http://127.0.0.1:5000
-
----
-
-## 🔷 Project Structure (Optional but nice)
-
-```md
-## 📂 Project Structure
-
-- app.py → Main Flask application
-- templates/ → HTML files
-- static/ → CSS and assets
-- screenshots/ → Project images
-
-
-## 🧰 Technologies
-
-- Python
-- Flask
-- SQLite
-- HTML / CSS
-
-
-## 👤 Author
-
-- GitHub: https://github.com/ground00
-   
-
